@@ -39,20 +39,31 @@ def get_post(post_id):
     conn.close()
     return render_template('post.html', post=post)
 
-# @app.route('/new', methods=['GET', 'POST'])
-# def new_post():
-#     if request.method == 'POST':
-#         title = request.form['title']
-#         content = request.form['content']
+@app.route('/new', methods=['GET', 'POST'])
+def new_post():
+    if request.method == 'POST':
+        title = request.form['title']
+        content = request.form['content']
 
-#         conn = get_db_connection()
-#         conn.execute('INSERT INTO posts (title, content) VALUES (?, ?)', (title, content))
-#         conn.commit()
-#         conn.close()
+        conn = get_db_connection()
+        conn.execute('INSERT INTO posts (title, content) VALUES (?, ?)', (title, content))
+        conn.commit()
+        conn.close()
 
-#         return redirect(url_for('index'))
+        return redirect(url_for('index'))
 
-#     return render_template('add_post.html')
+    return render_template('add_post.html')
+
+# @app.route("/<int:post_id>/delete/", methods=['POST',])
+# # @login_required
+# def post_del(post_id):
+#     post = get_post(id)
+#     conn = get_db_connection()
+#     conn.execute('DELETE FROM posts WHERE id = ?', (id,))
+#     conn.commit()
+#     conn.close()
+#     # flash('"{}" was successfully deleted!'.format(post['title']))
+#     return redirect(url_for('index'))
 
 @app.before_first_request
 def before_first_request():
