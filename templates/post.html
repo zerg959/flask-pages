@@ -1,11 +1,19 @@
-<!DOCTYPE html>
-<html>
+<!DOCTYPE html> -->
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+ <html>
 <head>
     <title>{{ post.title }}</title>
 </head>
 <body>
     <h1>{{ post.title }}</h1>
     <p>{{ post.content }}</p>
-    <p>Back to index</p>
+    <a href="{{ url_for('index') }}">Back to index</a>
 </body>
 </html>
+
+<!-- {% extends 'base.html' %}
+{% block content %}
+  <h1>{{ post.title }}</h1>
+  <p>{{ post.content }}</p>
+  <a href="{{ url_for('index') }}">Back to index</a>
+{% endblock %} -->
