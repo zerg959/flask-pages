@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<!-- <link {{ url_for("static", filename="style.css") }} rel="stylesheet" type="text/css"/> -->
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+<html>
+<head>
+    <title>index</title>
+</head>
+<header>
+  My Blog
+</header>
+<body>
+    <h1>  Main Page  </h1>
+    <ul>
+        {% for post in posts %}
+        <!-- <li><a href="{{ url_for('get_post', post_id=post['id']) }}">{{ post['title'] }}</a></li> -->
+        <li>{{ post.title }}</li>
+        <li>{{ post.content }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

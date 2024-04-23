@@ -1,4 +1,6 @@
 h1 {
-    color: blueviolet;
-    background-color: lightblue;
+  border: 2px #eee solid;
+  color: #fc3d17;
+  text-align: center;
+  padding: 10px;
 }

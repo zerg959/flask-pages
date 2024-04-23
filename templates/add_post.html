@@ -1,21 +1,23 @@
 {% extends 'base.html' %}
 
 {% block content %}
-  <h1>Add New Post</h1>
-  {% with messages = get_flashed_messages() %}
-    {% if messages %}
-      <ul class="flashes">
-        {% for message in messages %}
-          <li>{{ message }}</li>
-        {% endfor %}
-      </ul>
-    {% endif %}
-  {% endwith %}
-  <form method="post">
-    <label for="title">Title</label><br>
-    <input type="text" id="title" name="title"><br>
-    <label for="content">Content</label><br>
-    <textarea id="content" name="content"></textarea><br>
-    <input type="submit" value="Submit">
-  </form>
+<h1>{% block title %} Create a New Post {% endblock %}</h1>
+
+<form method="post">
+  <div class="mb-3">
+    <label for="title" class="col-sm-2 col-form-label">Title</label>
+    <input type="text" name="title"
+           placeholder="Post title" class="form-control"
+           value="{{ request.form['title'] }}">
+  </div>
+
+  <div class="mb-3">
+    <label for="content" class="col-sm-2 col-form-label">Content</label>
+    <textarea name="content" placeholder="Post content"
+              class="form-control" rows="3">{{ request.form['content'] }}</textarea>
+  </div>
+  <div class="mb-3">
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </div>
+</form>
 {% endblock %}
