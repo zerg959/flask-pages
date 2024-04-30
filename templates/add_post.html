@@ -17,7 +17,29 @@
               class="form-control" rows="3">{{ request.form['content'] }}</textarea>
   </div>
   <div class="mb-3">
+  <form method=post enctype=multipart/form-data>
+    <input type=file name=file>
+    <input type=submit value=Upload>
+  </form>
+
+  <div class="mb-3">
     <button type="submit" class="btn btn-primary">Submit</button>
   </div>
+  {% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <ul>
+    {% for message in messages %}
+      <li>{{ message }}</li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %}
+</p>
+{% if filename %}
+<div>
+    <img src="{{ url_for('display_image', filename=filename) }}">
+</div>
+{% endif %}
+
 </form>
 {% endblock %}

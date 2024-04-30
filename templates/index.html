@@ -3,12 +3,24 @@
 {% block content %}
   <h1>{% block title %} Welcome to FlaskBlog {% endblock %}</h1>
   {% for post in posts %}
-    <li><a href="{{ url_for('get_post', post_id=post['id']) }}">{{ post['title'] }}</a></li>
-    <span class="badge text-bg-primary">{{ post['created'] }}</span>
-    <a href="{{ url_for('edit', post_id=post['id']) }}">
-      <span class="badge text-bg-warning">Edit</span>
-    </a><br>
-    <span>{{ post['content'] }}</span>
+  <a href="{{ url_for('get_post', post_id=post['id']) }}">
+    <h2>{{ post['title'] }}</h2>
+  </a>
+  <span class="badge text-bg-primary">{{ post['created'] }}</span>
+  <a href="{{ url_for('edit', post_id=post['id']) }}">
+    <span class="badge text-bg-warning">Edit</span>
+  </a>
+    <div>
+      {{ post['content'] }}
+    </div>
+
+    <div class="col-md-12 text-right">
+    <form action="{{ url_for('post_del', post_id=post['id']) }}" method="POST">
+      <input type="submit" value="Delete Post"
+             class="btn btn-danger btn-sm"
+             onclick="return confirm('Are you sure you want to delete this post?')">
+    </form>
+    </div>
     <hr>
   {% endfor %}
 {% endblock %}
